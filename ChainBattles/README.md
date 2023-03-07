@@ -1,6 +1,6 @@
-# Sample Hardhat Project
+# ChainBattles Hardhat project
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a script that deploys that contract.
+This project contains the code for Alchemy's Road To Web3 Week 3 challenge.
 
 Try running some of the following tasks:
 
@@ -11,3 +11,13 @@ REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat run scripts/deploy.js
 ```
+
+## Mumbai Deploy
+
+    npx hardhat run scripts/deploy.js --network mumbai
+
+## Mumbai Verify
+
+Capture the address from the above command and issue the following:
+
+    npx hardhat verify --network mumbai 0xYourAddressFromAbove
