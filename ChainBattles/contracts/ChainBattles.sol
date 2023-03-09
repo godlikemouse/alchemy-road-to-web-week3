@@ -96,12 +96,10 @@ contract ChainBattles is ERC721URIStorage {
 
         return
             string(
-                abi.encodePacked(
                     abi.encodePacked(
                         "data:application/json;base64,",
                         Base64.encode(dataURI)
                     )
-                )
             );
     }
 
@@ -114,7 +112,7 @@ contract ChainBattles is ERC721URIStorage {
         _safeMint(msg.sender, newItemId);
 
         //implement base random stats
-        Stats memory stats = Stats(100, random(), random(), 1);
+        Stats memory stats = Stats(100, _random(), _random(), 1);
 
         tokenIdToStats[newItemId] = stats;
         _setTokenURI(newItemId, getTokenURI(newItemId));
@@ -134,8 +132,8 @@ contract ChainBattles is ERC721URIStorage {
         //randomize values to other stats
         stats.level++;
         stats.hp += 10;
-        stats.speed += random();
-        stats.strength += random();
+        stats.speed += _random();
+        stats.strength += _random();
 
         tokenIdToStats[_tokenId] = stats;
         _setTokenURI(_tokenId, getTokenURI(_tokenId));
@@ -145,7 +143,7 @@ contract ChainBattles is ERC721URIStorage {
      * @dev Retrieves a pseudo random number between 1 and 10.
      * @return uint256 the random number
      */
-    function random() internal returns (uint256) {
+    function _random() internal returns (uint256) {
         return
             uint256(
                 keccak256(
