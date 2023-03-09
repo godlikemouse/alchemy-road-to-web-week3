@@ -10,7 +10,7 @@ contract ChainBattles is ERC721URIStorage {
     using Strings for uint256;
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
-    uint private nonce;
+    uint private _nonce;
 
     struct Stats {
         uint256 hp;
@@ -147,7 +147,7 @@ contract ChainBattles is ERC721URIStorage {
         return
             uint256(
                 keccak256(
-                    abi.encodePacked(block.timestamp, msg.sender, nonce++)
+                    abi.encodePacked(block.timestamp, msg.sender, _nonce++)
                 )
             ) % 10;
     }
